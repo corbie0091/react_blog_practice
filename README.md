@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+우리가 왜 설치 했는가
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+리액트 설치
 
-## Available Scripts
+직접 수동으로 리액트 라이브러리 설치해도 되지만 ..
 
-In the project directory, you can run:
+앱은
+Create React App 라이브러리로 만드는게 유리
 
-### `npm start`
+npm을 설치해야함 - 근데 이건 nodejs설치하면 자동으로 됨
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+쉽게 명령어로 다운로드가 가능
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+--프로젝트안에 들어있는 폴더들의 특징--
 
-### `npm test`
+node_modules 폴더 : 구동에 필요한 라이브러리 소스코드보관함
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+publick : html 이미지 파일등 static파일들 모아놓는 곳
 
-### `npm run build`
+src: 코드 짜는곳(소스코드 보관함)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+app.js가 메인페이지가 될 것.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+보통 웹페이지는 html파일로 되어 있어야하는데
+js파일로도 웹페이지를 잘 띄워줌
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+그이유는 App.js파일을 index.html로 잘들어가게끔
+index.js파일이 도와주기 때문
 
-### `npm run eject`
+package.json: 프로젝트 정보들이 포함ㅇ(이름, 버전)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 라이브러리정보들까지 포함되어 있음
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2강 :
+자바스크립트 파일에서 JSX라는 언어로 html대용품으로서 구현이 가능해짐
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+즉 리액트에서 div같은 걸 만드려면 createElement같은걸썻어야햇음 그래서 JSX로 표현하게됨
+ex) JSX = <div></div>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+JSX 문법
 
-## Learn More
+1. div등의 태그에 class넣을떈 className
+   (참고)css파일 쓰려면 상단에서 import 'css경로 잘 둬야함
+2. 변수 넣을땐 {중괄호} - 데이터바인딩
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+생 자바스크립트면
+document.querySelector('h4').innerHTML = post;
+이렇게 해서 변수에 집어 넣을 수 있지만 리액트는 이런과정이 필요가 없음
+그냥 {}안에 변수명을 적어주면 그 변수가 들어가짐 id속성같은데도 {}가능
