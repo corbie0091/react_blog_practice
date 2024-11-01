@@ -47,3 +47,12 @@ JSX 문법
 document.querySelector('h4').innerHTML = post;
 이렇게 해서 변수에 집어 넣을 수 있지만 리액트는 이런과정이 필요가 없음
 그냥 {}안에 변수명을 적어주면 그 변수가 들어가짐 id속성같은데도 {}가능
+
+3. style 넣을 떈 style={{스타일명: '값'}}이렇게 가능
+<h4 style={{color: 'red'}}></h4>
+그리고 font-size라고 하면 -를 마이너스로 인식하기에 fontSize이런식으로 해줘야함
+
+css파일열기 귀찮으면 이렇게 간단히도 설정가능
+
+3강주의점:
+return()안에는 <div>태그 2개이상 병렬로하면 오류뜸
