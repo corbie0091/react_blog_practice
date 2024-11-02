@@ -57,7 +57,8 @@ css파일열기 귀찮으면 이렇게 간단히도 설정가능
 3강주의점:
 return()안에는 <div>태그 2개이상 병렬로하면 오류뜸
 
-#[memo1 ./App.js]
+# memo1
+
 // 자료 잠깐 저장할 땐 변수사용
 
 // 리액트에선 state문법을 사용하는 경우가 o
@@ -95,7 +96,12 @@ let [logo, setLogo] = useState("ReactBlog");
 // 자주 변경될 거 같은 제목, 날짜 클래스명 등 이런것들을 state로 빼서 미리 저장
 // 이후 state를 데이터바인딩하는 식으로 코딩해주면 된다.
 
-#[memo2 ./App.js]
+// function 함수() { console.log(1); }
+// () => { console.log(1); };
+// 이것도 함수 만드는 문법임 onClick 안에 함수 넣을 수 있음
+
+# memo2
+
 // 글제목[0] = "여자 옷 추천"; // 영구적으로 수정해버림
 // 그래서 array/object 다룰때 원본은 보존하는 게 좋음
 // copy문법: copy로 가져오고 거기서 [0]부분을 수정
@@ -128,7 +134,8 @@ let [logo, setLogo] = useState("ReactBlog");
 // 정리: 1. 기존 state가 array나 object이다? = 독립적 카피본을 만들어서 수정해야함
 // 2. 별개의 복사본을 만들어 그것을 set함수에 집어 넣으면 된다.
 
-#[memo3]
+# memo3
+
 // 컴포넌트 문법
 // 더러운 html을 <Modal></Modal> 이런식으로 함
 // 미래의 나, 다른 사람들이 이해하기 쉬움
@@ -137,7 +144,8 @@ let [logo, setLogo] = useState("ReactBlog");
 // return()안에 html 담기
 // <함수명></함수명>쓰기
 
-#[memo4]
+# memo4
+
 // 다른 function 바깥에 만들어야함
 // 담을 내용들을 return ()안에 담고
 // [참고] <div></div> <div></div>이런식으로 병렬은 x 병렬기입하고 싶으면 <div><div>해야함
@@ -149,7 +157,8 @@ let [logo, setLogo] = useState("ReactBlog");
 // 2. 큰 페이지 전환에 유리(큰페이지 만들때 사용)
 // 3. 자주 변경되는 html UI같은걸 컴포넌트로하면 성능상 유리
 
-#[memo5]
+# memo5
+
 // 변수를 만들고 함수를 하나 집어 넣어주세요 (이것도 됨 - 이것도 그냥 컴포넌트)
 let Modal = () => {}
 
@@ -161,3 +170,36 @@ let Modal = () => {}
 // 컴포넌트의 단점 // 여기에 state넣고 싶은데.. 어떻게 해야해 // 즉 state
 가져다 쓸때 문제 생김 // A함수에 있던 변수는 B함수에서 맘대로 가져다 쓸 수없음
 // 그래서 모든걸 다 이렇게 컴포넌트로 만들지 말자.
+
+# memo7
+
+// function App() = 이것도 실은 컴포넌트임
+
+# memo8
+
+// 동적인 UI만드는 3step
+// 1. html cass로 미리 디자인완성
+// 2. UI의 현재 상태를 state로 저장 ( 자료형으로 저장 useState형식으로 받아옴)
+// 3. state에 따라 UI가 어떻게 보일지 작성
+
+다시한번 복습: 리액트에서 UI만드는 과정을 비유하면
+스위치와 전등만드는 거랑 비슷하다고 보면 됩니다.
+이미지참고 ( "https://codingapple-cdn.b-cdn.net/wp-content/uploads/2020/04/stoto.jpg" )
+
+1. 일단 전등이쁘게 달아놓고
+2. 스위치랑 연결하고
+3. 스위치를 on으로 놓으면 불이 켜지고 off로 놓으면 불이 꺼지도록 만들어 놓는 겁니다
+   그리고 나중에 필요하면 스위치조작만 하면 된느 것임
+   스위치는 state, 전등은 <Modal>입니다.
+
+# memo9
+
+state가 보이면 숨겨주세요! true면 보여주세요!
+즉 조건식을 써야함 중괄호안에는 if문을 쓸 수 없음
+html공간이기때문에 안됨 그래서 if대용으로 쓸수 있는
+삼항연산자를 사용해주면 됨
+[참고] null은 비어있는 html로 자주 사용
+즉 클릭시 state만 조절되게 해주면 됩니다.
+[참고] 그냥 js였으면 버튼 누르면 모달창 html을 직접 건드림
+[참고] 리액트에선 버튼(기계, 삼항연산자) 누르면 모달창 스위치(state)만 건드리게함
+스위치부분ex) let [modal, setModal] = useState(false); //현재 상태에 대해 보관

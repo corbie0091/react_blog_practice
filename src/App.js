@@ -13,9 +13,7 @@ function App() {
 
   let [good, setGood] = useState(0);
 
-  // function 함수() {  console.log(1); }
-  // () => {  console.log(1); };
-  // 이것도 함수 만드는 문법임 onClick 안에 함수 넣을 수 있음
+  let [modal, setModal] = useState(false); //현재 상태에 대해 보관
 
   return (
     <div className="App">
@@ -63,13 +61,22 @@ function App() {
         <h4>{글제목[1]}</h4>
         <p>2월 17일 발행</p>
       </div>
-      <div className="list ">
-        <h4>{글제목[2]}</h4>
+      <div className="list">
+        <h4
+          onClick={() => {
+            setModal(!modal);
+          }}
+        >
+          {글제목[2]}
+        </h4>
         <p>2월 17일 발행</p>
         <p>상세내용</p>
       </div>
+      {/* [memo8] */}
 
-      <Modal />
+      {/* [memo9] */}
+      {modal ? <Modal /> : null}
+
       <Moew />
       <h4>{post}</h4>
     </div>
