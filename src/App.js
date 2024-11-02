@@ -14,6 +14,7 @@ function App() {
   let [good, setGood] = useState([0, 0, 0]);
 
   let [modal, setModal] = useState(false); //현재 상태에 대해 보관
+
   return (
     <div className="App">
       <div className="black-nav">
@@ -45,14 +46,6 @@ function App() {
         <h4>
           {/* onClick 이벤트 핸들러를 이용해 좋아요를 구현 {}안엔 함수이름을 넣어야함 */}
           {글제목[0]}{" "}
-          <span
-            onClick={() => {
-              setGood(good + 1);
-            }}
-          >
-            👍
-          </span>{" "}
-          {good}
         </h4>
         <p>2월 17일 발행</p>
       </div>
@@ -74,11 +67,11 @@ function App() {
       {/* [memo8] */}
 
       {/* [memo9] */}
-      {modal ? <Modal /> : null}
+
+      {modal ? <Modal set글제목={set글제목} 글제목={글제목} /> : null}
+
       {/* memo10 */}
       {/* memo11 */}
-
-      {/* memo12 */}
 
       {글제목.map(function (a, i) {
         return (
@@ -113,13 +106,21 @@ function App() {
 // [memo5]
 
 // [memo3,4]
-function Modal() {
+// [memo12]
+function Modal(props) {
   return (
     <div className="modal ">
       {/* [memo6] */}
-      <h4>제목</h4>
+      <h4>{props.글제목[0]}</h4>
       <p>2월 17일 발행</p>
       <p>상세내용</p>
+      <button
+        onClick={() => {
+          props.set글제목(["여자 옷 추천", "강남우동맛집", "파이썬독학"]);
+        }}
+      >
+        글수정
+      </button>
     </div>
   );
 }

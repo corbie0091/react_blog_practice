@@ -249,3 +249,57 @@ return <div>안녕</div>;
 이는 <div>안녕</div> <div>안녕</div> <div>안녕</div>과 같다
 
 리액트는 array안에 html담아놔도 잘 보여줌
+
+# memo12
+
+A함수에서 사용하는 변수를 B함수에서 사용하는 방법?
+props문법 쓰면 사용가능
+
+우리는
+<App>부모컴포넌트 안에 <Modal>자식컴포넌트가 있는 것임
+부모>자식 컴포넌트로 state 전송이가능함
+이떄 props문법을 사용해야함
+
+props문법 2step
+
+1. <자식 컴포넌트> 작명={state이름}
+   ex) {modal ? <Modal 작명={state이름}/> : null}
+   ex) {modal ? <Modal 작명={글제목}/> : null}
+2. props 파라미터 등록 후 props.작명 사용
+   function Modal(props) {
+   return (
+   <div className="modal ">
+   {/_ [memo6] _/}
+   <h4>{props.작명}</h4>
+   <p>2월 17일 발행</p>
+   <p>상세내용</p>
+   </div>
+   );
+   }
+
+// 정리) 부모 -> 자식 컴포넌트로 state 전송하려면
+props문법을 쓰면 되는데
+// 1. <자식컴포넌트 작명={state이름}> = 귀찮으면 작명도 state이름으로 해도됨
+// 2. props 파라미터 등록 후 props.작명으로 사용
+// 그리고 props전송은 부모에서 자식으로만 가능
+// 옆집 컴포넌트끼리는 전송 불가능, 자식에서 부모 전송도 불가능
+// 컴포넌트만들어 쓰는건 자유지만 많아지면 props쓰는게 귀찮아짐
+
+// 참고 배경이 파란색인 모달창을 쓰고 싶음
+-> div에 style={{background: 'skyblue'}}
+// 근데 배경을 오랜지색으로 변경하고싶음 (다양한색으로)
+그러면 style={{background: props.color}}
+이런식으로 받아오면됨
+그러고 {modal ? <Modal color={yellow} 작명={글제목}/> : null}이렇게 props를 전송하는 식으로 해주면 됨
+이런식으로 props문법을 사용
+함수의 파라미터문법과 유사
+
+props를 보낼때 일반 문자나 숫자이런 거 보낼때는
+그냥 color="yellow"이런식으로 그냥 보내도 넘어감
+props.color 이런 식으로 구멍을 뚫어놓으면 이제 컴포넌트 사용할 때
+
+<Modal color={'skyblue'} /> 이러면 하늘색 모달창이 생성됩니다.
+
+<Modal color={'orange'} /> 이러면 오렌지색 모달창이 생성됩니다.
+
+그래서 비슷한 컴포넌트를 또 만들 필요가 없어지는 것입니다.
