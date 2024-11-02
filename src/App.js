@@ -11,10 +11,9 @@ function App() {
     "부산 맛집 소개",
   ]);
 
-  let [good, setGood] = useState(0);
+  let [good, setGood] = useState([0, 0, 0]);
 
   let [modal, setModal] = useState(false); //현재 상태에 대해 보관
-
   return (
     <div className="App">
       <div className="black-nav">
@@ -76,9 +75,37 @@ function App() {
 
       {/* [memo9] */}
       {modal ? <Modal /> : null}
+      {/* memo10 */}
+      {/* memo11 */}
 
-      <Moew />
-      <h4>{post}</h4>
+      {/* memo12 */}
+
+      {글제목.map(function (a, i) {
+        return (
+          <div className="list" key={i}>
+            <h4
+              onClick={() => {
+                setModal(!modal);
+              }}
+            >
+              {글제목[i]}
+              <span
+                onClick={() => {
+                  let copy = [...good];
+                  copy[i] += 1;
+                  setGood(copy);
+                  console.log(copy);
+                }}
+              >
+                👍
+              </span>{" "}
+              {good[i]}
+            </h4>
+
+            <p>2월 17일 발행</p>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -96,17 +123,6 @@ function Modal() {
     </div>
   );
 }
-
-let Moew = () => {
-  return (
-    <>
-      <div className="modal">
-        <h4>하이</h4>
-        <h6>게스트</h6>
-      </div>
-    </>
-  );
-};
 
 export default App;
 
