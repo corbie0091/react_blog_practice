@@ -15,6 +15,12 @@ function App() {
 
   let [modal, setModal] = useState(false); //현재 상태에 대해 보관
 
+  // [memo15]
+  let [word, setWord] = useState("");
+
+  const onRemove = (title) => {
+    set글제목(글제목.filter((item) => item !== title));
+  };
   return (
     <div className="App">
       <div className="black-nav">
@@ -83,7 +89,9 @@ function App() {
             >
               {글제목[i]}
               <span
-                onClick={() => {
+                onClick={(e) => {
+                  // memo14
+                  e.stopPropagation();
                   let copy = [...good];
                   copy[i] += 1;
                   setGood(copy);
@@ -96,9 +104,39 @@ function App() {
             </h4>
 
             <p>2월 17일 발행</p>
+            <button
+              onClick={() => {
+                let copy = [...글제목];
+                copy.splice(i, 1);
+                set글제목(copy);
+              }}
+              // onRemove(글제목[i]);
+            >
+              삭제
+            </button>
           </div>
         );
       })}
+      {/* memo14 */}
+      <input
+        onChange={(e) => {
+          setWord(e.target.value);
+          console.log(word);
+        }}
+      />
+      {/* memo16 */}
+      <button
+        onClick={() => {
+          // 배열에 새 항목을 추가 할 때에는
+          // spread연산자  or concat() 사용하면 된다.
+          // set글제목([...글제목, word]);
+          setGood(good.concat(0));
+
+          // [memo16]
+        }}
+      >
+        글발행
+      </button>
     </div>
   );
 }

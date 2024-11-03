@@ -303,3 +303,160 @@ props.color 이런 식으로 구멍을 뚫어놓으면 이제 컴포넌트 사�
 <Modal color={'orange'} /> 이러면 오렌지색 모달창이 생성됩니다.
 
 그래서 비슷한 컴포넌트를 또 만들 필요가 없어지는 것입니다.
+
+# memo13
+
+input 태그
+<input></input>
+
+종류 : type="text" , "range", "checkbox" ... 등등
+ex) <input type="text"/>
+
+cf) select태그 ( 드롭다운기능있음 )
+textarea태그 : 큰 input박스가 있음
+
+<input>에 뭔가 입력시 특정 코드실행하고 싶으면 ?이벤트핸들러: onChange/ onInput 하면 실행이 됨
+ex) <input onChange={()=>{ ??? }}>
+
+이벤트핸들러는 매우많음..그때그때파악 지금은 예시)
+onClick은 요소를 눌럿을때
+onChange는 값을 넣을때마다 코드 실행 (onInput도 유사)
+ex)console.log(1)을 안에 집어넣으면 입력때마다 1이 출력
+
+onMouseOver={} 이 인풋에 마우스를 갖다 댔을때 실행
+
+onScroll={} 태그가 스크롤바가 있고 그것을 조작할때 마다 코드 실행
+
+복습해야할 것
+
+- state만드는법
+- props 전송하는 법
+- 컴포넌트 만드는 법
+- UI만드는 step
+
+input태그의 주의할 점
+: input에 입력한 값 가져오는 법
+<input onChange={(e)=>{ ??? }}/>
+e
+ㄴ 지금 발생하는 이벤트에 관련한 여러 기능이 담겨 있음
+<input onChange={(e)=>{ e.target }}/>// 인폿태그
+<input onChange={(e)=>{ e.target.value }}/> // 인풋태그에 입력한 값
+
+<input
+onChange={(e) => {
+console.log(e.target.value);
+}}
+/>
+입력할때마다 콘솔에 찍히는 거 관찰이 가능
+
+# memo14
+
+응용 ( 생 자바스크립트 편 즉 리액트에 js문법들어가있음 )
+
+<div className="list" key={i}>
+            <h4
+              onClick={() => {
+                setModal(!modal);
+              }}
+            >
+              {글제목[i]}
+              <span
+                onClick={() => {
+                  let copy = [...good];
+                  copy[i] += 1;
+                  setGood(copy);
+                  console.log(copy);
+                }}
+              >
+                👍
+              </span>{" "}
+              {good[i]}
+            </h4>
+
+            <p>2월 17일 발행</p>
+          </div>
+
+여기서 span 태그의 따봉아이콘만 눌러도 숫자가 올라감 분명 h4에 onClick걸었는데..
+즉 클릭을 한번 한게 아니라 span1번 h4 1번 div 1번
+이런식으로 누른것임
+
+즉 클릭 이벤트는 상위html로 퍼지게 되는 것임
+= [이벤트 버블링]
+
+이를 막고 싶다면 e.stopPropagation()
+내 상위요소에 퍼지는 것을 막아줌
+예시)
+<span
+onClick={(e) => {
+// memo14
+e.stopPropagation();
+let copy = [...good];
+copy[i] += 1;
+setGood(copy);
+console.log(copy);
+}}
+
+> 따봉아이콘</span>
+
+# memo15
+
+<input>에 입력한 값 저장하려면 ?
+보통 변수 또는 state에 저장해둔다.
+./App.js
+
+let [word, setWord] = useState();
+
+<input
+onChange={(e) => {
+setWord(e.target.value);
+console.log(word);
+}}
+/>
+
+input태그에 a 입력하면 콘솔창에 a가 안뜬다? whY?
+[참고] state변경함수는 늦게 처리되기 때문
+늦게 처리됨 ( 비동기처리 특성때문 )
+즉 setWord처리이전에 console함수가 처리되어서 그럼
+즉 state처리는 잘된 것임
+
+# memo16
+
+문제1. 글발행버튼만들기
+<button
+onClick={() => {
+// 배열에 새 항목을 추가 할 때에는
+// spread연산자 or concat() 사용하면 된다.
+set글제목([...글제목, word]);
+setGood(good.concat(0));
+}} >
+글발행
+</button>
+
+해답:
+// 답안: array를 건드릴때 copy를 시켜놓고 진행하자
+// unshift 함수활용해서 추가해주면 된다.
+let copy = [...글제목];
+copy.unshift(word);
+set글제목(copy);
+[참고] 왜 새로고침하면 없어질까?
+
+- 새로고침시에 html.js파일이 다시 읽어서 그런 것 (초기화됨)
+- 서버에 연결해서 데이터베이스 화해놓으면 안없어짐
+
+문제2. 글마다삭제버튼만들기
+내풀이 onRemove함수를 만들어놓고 onClick시에 실행시키도록진행
+onRemove(글제목)해놓으면
+그 해당 글만 제외하고 다 표현하도록 진행시키기위해
+filter함수를 이용해서 조회한후 같은 부분만 없애도록 진행 => setState함수에 의해 재랜더링 진행 -> 삭제완료
+const onRemove = (title) => {
+set글제목(글제목.filter((item) => item !== title));
+};
+
+해답:
+state 즉 switch만 건들어주면 된다.
+내가 원하는 자료만 빼버리면 n-1의 자료들을 보여줄것이다
+array자료바꾸려면 array먼저 copy본 복사
+
+let copy = [...글제목];
+copy.splice(i, 1); <i번 째 항목을 삭제함
+set글제목(copy);
