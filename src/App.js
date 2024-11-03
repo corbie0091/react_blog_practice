@@ -129,7 +129,7 @@ function App() {
         onClick={() => {
           // 배열에 새 항목을 추가 할 때에는
           // spread연산자  or concat() 사용하면 된다.
-          // set글제목([...글제목, word]);
+          set글제목([...글제목, word]);
           setGood(good.concat(0));
 
           // [memo16]
