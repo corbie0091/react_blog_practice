@@ -460,3 +460,18 @@ array자료바꾸려면 array먼저 copy본 복사
 let copy = [...글제목];
 copy.splice(i, 1); <i번 째 항목을 삭제함
 set글제목(copy);
+
+# memo17
+
+// class 문법(옛날문법) 변수랑 함수를 많이 보관할 수 있는통
+// 3개의 함수가 필요함 : constructor(), super(), render()
+// class 컴포넌트에서 state만드려면?
+// constructor() { super() this.state = { name: "kim", age: 20 }}
+// 객체형식으로 저장해주면 됨
+// 그리고 {this.state.age} 이런식으로 활용해주면 됨
+// class state수정은 기존 state를 버튼을 누르면 바뀌게해줌 ( 갈아치워주는게 아니라 변경사항만 반영 )
+// 즉 차이점만 분석해서 변경해줌 this.setState({ age: 200 }); 이런식으로 setState함수를 활용
+// class 컴포넌트에서 props :
+// 부모가 데이터를 props로 자식에게 전달해줄 수 있는데,
+// constructor(props) { super(props); } 이런식으로 받고
+// 나중에 return() 에서 사용시엔 {this.props}로 받음

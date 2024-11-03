@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { Component, useState } from "react";
 
 function App() {
   // [memo7]
@@ -137,6 +137,7 @@ function App() {
       >
         글발행
       </button>
+      <Modal2 />
     </div>
   );
 }
@@ -161,6 +162,31 @@ function Modal(props) {
       </button>
     </div>
   );
+}
+
+// [memo17]
+class Modal2 extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "kim",
+      age: 26,
+    };
+  }
+  render() {
+    return (
+      <div>
+        class문법div태그부분 {this.state.age}
+        <button
+          onClick={() => {
+            this.setState({ age: 200 });
+          }}
+        >
+          변경하기
+        </button>
+      </div>
+    );
+  }
 }
 
 export default App;
